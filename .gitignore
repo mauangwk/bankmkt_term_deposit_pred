@@ -1,4 +1,5 @@
 venv
+.venv
 __pycache__
 .DS_Store
 
@@ -8,5 +9,6 @@ __pycache__
 files/outputs/*
 
 datasets/pre-processed/*
+datasets/raw/bank*.csv
 
 catboost_info

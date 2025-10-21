@@ -1,9 +1,15 @@
-# Analisis para la telecom Interconect, Prevencion de Churn
+# Marketing Bancario
 
-## Objetivo
+## Objectivo
 
-Tratar de prevenir el churn al identificar que un cliente tiene las caracteristicas para abandonar la compañia.
-El equipo de marketing de Interconnect ha recopilado algunos de los datos personales de sus clientes, incluyendo información sobre sus planes y contratos.
+Este proyecto se enfoca en un problema de clasificacion binaria para predecir si un cliente bancario se suscribirá o no a un deposito a plazo
+
+<!-- This project focuses on a binary classification for predicting whether a bank client will subscribe to a term deposit. 
+if not (params.preprocess_required and params.training_required):
+    print("\nfavor de explorar el directorio insights en busqueda de una version inicial")
+
+-->
+
 
 ## Estructura del Proyecto
 
@@ -11,6 +17,7 @@ El repositorio está organizado de la siguiente manera:
 
 - **/datasets**: Contiene los datos brutos (`raw`) y los datos listos para ser procesados para la creacion del modelo(`pre-processed`).
 - **/files/documentation**: Almacena la estructura/modelo de datos y notebooks de Jupyter para análisis exploratorio o referencias del proyecto en un bootcamp en tripleten.
+- **<a href="insights/bankmkt.ipynb">/insights/</a>**: Archivos de exploracion y donde se puede encontrar una primer vesion del proyecto o en version Jupyter Notebook
 - **/files/outputs**: Guarda los resultados del proyecto, como el modelo entrenado (`models`), imagenes (`images`)
 - **/src**: Contiene el código fuente modularizado en scripts de Python.
 - **`requirements.txt`**: Lista de dependencias del proyecto.
@@ -20,9 +27,8 @@ El repositorio está organizado de la siguiente manera:
 Por favor considerar el ejecutar las siguientes instrucciones para manejar el workspace dentro de un ambiente virtual:
 
 ```
-mkdir venv
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 user$ pip install --upgrade pip
 user$ python -m pip install -r requirements.txt
 ```
@@ -44,12 +50,15 @@ python project_pipeline.py
 
 El modelo final es un `CatBoost` optimizado. Las siguientes fueron las metricas obtenidas:
 
-<img width="2000" height="600" alt="model_evaluation" src="https://github.com/user-attachments/assets/b04abc7e-df73-4eb1-86f3-289b0153e37a" />
+{'RandomForestClassifier': np.float64(0.6008638719758517),
+ 'XGBClassifier': np.float64(0.5659917041064582),
+ 'LGBMClassifier': np.float64(0.5742320597687598),
+ 'CatBoostClassifier': np.float64(0.6186668751078144)}
 
-|        |train|test|
-|--------------|-----|----|
-|F1 Score      |0.63 |0.59|
-|Accuracy Score|0.82 |0.81|
-|Recall Score  |0.57 |0.54|
-|APS           |0.72 |0.65|
-|ROC AUC       |0.87 |0.84|
+### Conclusión
+De los experimentos realizados hasta ahora, CatBoostClassifier mostró buenos resultados con una precisión métrica de 0,62.
+
+### ¿Qué se puede mejorar?
+
+- Conviene equilibrar las clases.
+- Revisitar y refinar la ingeniería de clases así como la normalización. 
